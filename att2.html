@@ -6,6 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <style>
+        
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
         .box{
             width: 140px;
             height: 140px;
@@ -13,6 +19,18 @@
         .b1{
             background-color: blue;
 
+        }
+        .b2
+        {
+            background-color: gold;
+            left:  0;
+            position:  absolute;
+        }
+        .b3
+        {
+            background-color: aqua;
+            position: absolute ;
+            right: 0;
         }
         .meio{
         position: absolute;
@@ -22,18 +40,32 @@
         left: 50%;
 
         transform: translate(-50%, -50%);
+    }
+        .b4{
+            background-color: black;
+            position: absolute;
+            bottom: 0;
+            
         }
+        .b5{
+            background-color:violet;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            
+        }
+    
     </style>
     </head>
 
 
     <body>
         <div class="meio">
-            <div class="box b1"></div>
+            <div class="box b1">meio</div>
         </div>
-        <div class="box b2"></div>
-        <div class="box b3"></div>
-        <div class="box b4"></div>
-        <div class="box b5"></div>
+        <div class="box b2"><p>esquerda, cima</p></div>
+        <div class="box b3">direita cima</div>
+        <div class="box b4">esquerda baixo</div>
+        <div class="box b5">d</div>
     </body>
 </html>
