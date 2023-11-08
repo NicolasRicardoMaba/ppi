@@ -1,4 +1,4 @@
-package com.example.sqlite;
+package com.example.sqlite.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.sqlite.R;
+import com.example.sqlite.model.Nota;
 
 import java.sql.SQLData;
 import java.util.ArrayList;
@@ -47,28 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
     @SuppressLint("Range")
-    public void criaUser(View v) {
+    public void criaUser(Nota nota) {
 
-        String nome = String.valueOf(nomeInserir.getText());
+
         ContentValues cv = new ContentValues();
-        cv.put("nome",nome);
+        cv.put("titulo",nota.);
         sqliteDB.insert("usr", null,cv);
-        Log.d("OnclickEvent", "FOI");
 
-        Cursor cursor = sqliteDB.rawQuery("select * from usr", null);
-        cursor.moveToFirst();
-        ArrayList<String> listaUser = new ArrayList<String>();
-        while (!cursor.isAfterLast()){
-            listaUser.add(cursor.getString( cursor.getColumnIndex("nome")));
-
-            cursor.moveToNext();
-        }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                android.R.id.text1,listaUser);
-
-        listView.setAdapter(arrayAdapter);
 
     }
 

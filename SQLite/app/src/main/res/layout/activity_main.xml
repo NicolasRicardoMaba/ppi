@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:onClick="criaUser"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="431dp"
         android:layout_height="518dp"
         android:layout_marginBottom="20dp"
