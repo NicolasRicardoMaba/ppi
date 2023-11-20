@@ -3,7 +3,4 @@
         session_destroy();
 
         header("Location: http://localhost/form.html");
-
-    
-
 ?>

@@ -6,9 +6,4 @@ $email = $_GET['email'];
 $senha = $_GET['senha'];
 
 cadastrarPessoa($nome,$email,$senha);
-
-
-
-
-
 ?>
