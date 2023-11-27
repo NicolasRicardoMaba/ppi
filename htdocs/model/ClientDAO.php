@@ -43,13 +43,13 @@ class ClientDAO{
             return false; 
         }
     }
-    public function delete_user(Integer $id){
+    public function delete_user($id){
         
         $con = conectaDB();
         
         $sql = "DELETE FROM usr WHERE id = :id";
         $statment = $con -> prepare($sql);
-        $statment-> bindParam(":id",$client->getId());
+        $statment-> bindParam(":id",$id);
         $statment->execute();
     }
     public function login(String $email, String $password){
