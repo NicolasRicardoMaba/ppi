@@ -1,16 +1,18 @@
 <?php
-
+include_once "../model/ClientDAO.php";
     class ClientController{
         private $message;
+        private $clientDAO;
         public function __construct(){
-            $this ->pessoaDAO = new PessoaDAO();
+            $this->clientDAO = new ClientDAO();
         }
         public function list_users() {
-                return ($users -> pessoaDAO -> list_users());
+            return $this->clientDAO->list_users();
         } 
-        public function  insert_users(Client $client) {
+        public function  insert_user(Client $client) {
             try {
-                $pessoaDAO -> insert_users($client);
+                
+                $this->clientDAO -> insert_user($client);
                 return $message="usuario Inserido Com Sucesso!";
             } catch (Exception $e) {
                 return $message="falha ao cadastrar usuario!";
@@ -19,15 +21,15 @@
         } 
         public function  update_user(Client $client) {
             try {
-                $pessoaDAO -> update_user($client);
+                $this->clientDAO -> update_user($client);
                 return $message="Dados alterados Com Sucesso!";
             } catch (Exception $e) {
                 return $message="falha ao alterar dados do usuario!";
             }
         }
-            public function delete_user(Integer $id) {
+            public function delete_user($id) {
                 try {
-                    $pessoaDAO -> delete_user($id);
+                $this->clientDAO -> delete_user($id);
                     return $message="Usuario Apagado Com Sucesso!";
                 } catch (Exception $e) {
                     return $message="Falha ao Apagar Usuario!";
@@ -35,14 +37,14 @@
     }
     public function login(String $email, String $password) {
 
-            return $pessoaDAO -> login($email, $password);
+            return $this->clientDAO -> login($email, $password);
 
         }
         
   
         public function logout() {
 
-            return $pessoaDAO -> logout();
+            return $this->clientDAO -> logout();
 
         }
     

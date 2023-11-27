@@ -1,5 +1,5 @@
 <?php 
-include_once "db.php";
+include_once "../DBAcess/db.php";
 
 class ClientDAO{
 
@@ -8,7 +8,7 @@ class ClientDAO{
         
         $con = conectaDB();
         //verificar se email é único
-        $sql = "insert into usr (name, email, password)value(:name, :email, :pasword);";
+        $sql = "insert into usr (name, email, password)value(:name, :email, :password);";
         $statment = $con -> prepare($sql);
         $statment-> bindParam(":name",$client->getName());
         $statment-> bindParam(":email",$client->getEmail());
@@ -43,13 +43,13 @@ class ClientDAO{
             return false; 
         }
     }
-    public function delete_user(Integer $id){
+    public function delete_user($id){
         
         $con = conectaDB();
         
         $sql = "DELETE FROM usr WHERE id = :id";
         $statment = $con -> prepare($sql);
-        $statment-> bindParam(":id",$client->getId());
+        $statment-> bindParam(":id",$id);
         $statment->execute();
     }
     public function login(String $email, String $password){
