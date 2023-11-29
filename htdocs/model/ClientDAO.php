@@ -10,9 +10,14 @@ class ClientDAO{
         //verificar se email é único
         $sql = "insert into usr (name, email, password)value(:name, :email, :password);";
         $statment = $con -> prepare($sql);
-        $statment-> bindParam(":name",$client->getName());
-        $statment-> bindParam(":email",$client->getEmail());
-        $statment-> bindParam(":password",$client->getPassword());
+        $name = $client->getName();
+        $email =$client->getEmail();
+        $password = $client->getPassword();
+        
+        $statment-> bindParam(":name",$name);
+        $statment-> bindParam(":email",$email);
+        $statment-> bindParam(":password",$password);
+       
         $statment->execute();
         
     }
@@ -22,10 +27,14 @@ class ClientDAO{
         
         $sql = "UPDATE usr SET name = :name, email = :email, password = :password WHERE id = :id";
         $statment = $con -> prepare($sql);
-        $statment-> bindParam(":name",$client->getName());
-        $statment-> bindParam(":email",$client->getEmail());
-        $statment-> bindParam(":password",$client->getPassword());
-        $statment-> bindParam(":id",$client->getId());
+        $name = $client->getName();
+        $email =$client->getEmail();
+        $password = $client->getPassword();
+        $id = $client->getId();
+        $statment-> bindParam(":name",$name);
+        $statment-> bindParam(":email",$email);
+        $statment-> bindParam(":password",$password);
+        $statment-> bindParam(":id",$id);
         $statment->execute();
  
 }
