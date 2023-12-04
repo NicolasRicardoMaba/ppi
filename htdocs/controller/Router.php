@@ -30,7 +30,6 @@ switch ($op) {
             $client = new Client($name, $password, $email);
 
             $clientController->insert_user($client);
-            echo "foi!";
         }
         break;
 
@@ -48,7 +47,6 @@ switch ($op) {
             $id =($_POST['id']);
             $client = new Client($name, $password, $email,$id);
             $clientController->update_user($client);
-            echo "foi!";
         }
         break;
 
@@ -56,17 +54,14 @@ switch ($op) {
         if (isset($_POST['id'])) {
             $id = $_POST['id'];
             $clientController->delete_user($id);
+            header("Location: ../view/TelaHome.php");
+
         }
         break;
-//mudar de lugar(metodo get n post)
     case "list_users":
-       $clientController->list_users();
-       foreach ($clientController->list_users() as $user) {      
-        echo "User ID: " . $user['id'] . "<br>";
-        echo "Name: " . $user['name'] . "<br>";
-        echo "Email: " . $user['email'] . "<br>";
-        echo "<hr>";
-    }
+    
+        header("Location: ../view/TelaHome.php");
+    
         break;
 
 
@@ -75,7 +70,7 @@ switch ($op) {
             $client = new Client();
             $email=($_POST['email']);
             $password =($_POST['password']);
-
+            
             $clientController->login($email,$password);
             
         }
@@ -83,6 +78,8 @@ switch ($op) {
 
     case "logout":
         $clientController->logout();
+        header("Location: ../view/TelaLogin.php");
+
         break;
 }
 

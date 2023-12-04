@@ -7,7 +7,7 @@ class ClientDAO{
     public function insert_user(Client $client){
         
         $con = conectaDB();
-        //verificar se email é único
+
         $sql = "insert into usr (name, email, password)value(:name, :email, :password);";
         $statment = $con -> prepare($sql);
         $name = $client->getName();
@@ -19,6 +19,12 @@ class ClientDAO{
         $statment-> bindParam(":password",$password);
        
         $statment->execute();
+        if ($statment->rowCount() > 0) {
+            header("Location: ../view/TelaHome.php");
+        } else {
+            header("Location: ../view/TelaCadastro.php");
+            echo "<script>alert('Erro: Cadastro Mal-sucedido.');</script>";
+        }
         
     }
     public function update_user(Client $client){
@@ -36,7 +42,14 @@ class ClientDAO{
         $statment-> bindParam(":password",$password);
         $statment-> bindParam(":id",$id);
         $statment->execute();
- 
+    
+            if ($statment->rowCount() > 0) {
+                header("Location: ../view/TelaHome.php");
+            } else {
+                header("Location: ../view/TelaHome.php");
+                echo "<script>alert('Erro: Nenhum registro foi atualizado.');</script>";
+
+            }
 }
     public function list_users(){
         try {
@@ -70,15 +83,20 @@ class ClientDAO{
         $statment-> bindParam(":email",$email);
         $statment-> bindParam(":password",$password);
         $condicion = $statment->execute();
-        if ($condicion){
-            session_start();
-            header("Location: http://localhost/home.php");
-            return $_SESSION["login"]=$_GET['login'];
+        if ($condicion) {
+            $user = $statment->fetch(PDO::FETCH_ASSOC);
+    
+            if ($user) {
+                session_start();    
+                $_SESSION["email"] = $user['email'];
+                header("Location: http://localhost/view/TelaHome.php");
+                exit();
         }
         else{
-            return $message="senha e/ou login inválidos";
+            header("Location: http://localhost/view/TelaLogin.php");
         }
     }
+}
     public function logout(){
         session_destroy();
     return  $message = "Sessão destruida";

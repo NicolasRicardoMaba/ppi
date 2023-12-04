@@ -1,7 +1,7 @@
 <?php 
     function conectaDB(){
         $user = "root";
-        $password = "root";
+        $password = "aluno";
         $host = "localhost";
         $db="crud";
 
